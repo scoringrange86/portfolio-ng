@@ -1,0 +1,113 @@
+<!doctype html>
+
+<html lang="en">
+
+<header>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+  <!-- change the name! -->
+  <title>{{fullName }}'s Portfolio</title>
+  <!-- link to the master cascading stylesheet -->
+  <link rel="stylesheet" href="css/master.css">
+  <link rel="FaviconIcon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="name" content="{{fullName }}'s Portfolio">
+  <!-- remove the following line after you are happy with your Website
+       so that search engines will index it! -->
+  <meta name="robots" content="noindex, nofollow">
+</header>
+
+<body ng-app="portfolioApp" ng-controller="appController">
+  <img class="hero" src="images/banner.jpg" width="100%" alt="banner">
+
+  <!-- change this to your name -->
+  <h1 ng-bind="fullName">{{fullName }}</h1>
+
+  <!-- brackets  allow for dynamic js code -->
+  {{"Peace to the Gods"}}
+
+  <!-- add a section called "About Me" -->
+  <h2>About Me</h2>
+
+  <!-- add a repeat loop to show all the p tags-->
+  <div ng-repeat="item in aboutMe">
+    <!-- can alternate classes with ng-if / class combining -->
+    <p ng-if="$odd" class="halftone">{{ item }}</p>
+    <p ng-if="$even">{{ item }}</p>
+
+  </div>
+
+  <h2>Work Samples</h2>
+  <!-- add a repeat loop to generate the img tags -->
+  <div ng-repeat="thumbnail in thumbnails">
+    <a href="images/{{thumbnail}}">
+    <img src="images/{{thumbnail}}" alt="{{ thumbnail}} "/>
+  </a>
+  </div>
+
+  <h2>Contact</h2>
+
+  <!-- add a link to let visitor to send you an email easily! -->
+  <p>Email: <a href="{{email}}" target="_blank">{{email}}</a></p>
+
+  <!-- don't post personal physical address, phone number or other personal information on the web! -->
+
+  <!-- add a form to demonstrate data binding -->
+  <!-- what if I want to bind text field to the data model ? -->
+  <form name="helloForm">
+    What is your name? <input type="text" name="visitorName" ng-model="visitorName" required>
+  </form>
+
+  <!-- conditionally shows the thank you message -->
+  <h2 ng-if="visitorName.length > 1" >Thank you for visiting, {{ visitorName }} !</h2>
+
+  <!-- link to the controller script here -->
+  <script src="angular/app.js"></script>
+</body>
+
+<footer>
+  <hr>
+  <!-- Add banner for razzle dazzle-->
+  <p> Powered by <a href="https://angularjs.org" target="_blank"><img src="images/angularjs.png" alt= "A"/>AngularJS</a></p>
+  <!-- change the name to yours! -->
+  <code>Copyright (C) 2022 {{fullName }}</code>
+</footer>
+
+</html>
+
+
+<!--
+
+            ### Notes 
+
+            Go live server was added as an extension 
+
+            Angular framework (src code / rules) was added via a script tag that pulls from an api and
+             scope was added to the body tag
+
+            App controllers are a major part of Angular architecture
+
+            App controller was added as a script tag element
+
+            Need at least one app controller for each angular js app
+
+            the html file serves as the "view" portion of angular's mmodel-view-controller 
+              (mvc) architecture
+
+            ng = next generation 
+
+            can use ng-bind directive to bind data to an element from data model (instead of brackets)
+
+            use ng-model directive to bind text field value to data model, this is called two way binding
+            if data is being updated from the view, you don't have to write code to retrieve 
+              it with data binding
+
+            ng-repeat directive is for looping , parameter provides the name of the array in the data
+              struct
+
+            ng-show provides conditional rendering of an element
+
+            although elements won't show on screen, they still exist within dom
+
+            use ng-if directive to keep sensitive info away from dom
+-->
